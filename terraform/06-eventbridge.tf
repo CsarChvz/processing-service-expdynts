@@ -19,11 +19,11 @@ resource "aws_cloudwatch_event_target" "target_queue_destination" {
   rule           = aws_cloudwatch_event_rule.updated_events_rule.name
   event_bus_name = aws_cloudwatch_event_bus.central_bus.name
   target_id      = "${var.project_prefix}-TargetQueueB"
-  arn            = aws_sqs_queue.target_queue.arn
+  arn            = aws_sqs_queue.cola_destino.arn 
 }
 
 resource "aws_sqs_queue_policy" "allow_bus_to_target_queue" {
-  queue_url = aws_sqs_queue.target_queue.id
+  queue_url = aws_sqs_queue.cola_destino.id 
   policy    = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -31,7 +31,7 @@ resource "aws_sqs_queue_policy" "allow_bus_to_target_queue" {
         Effect    = "Allow"
         Principal = { Service = "events.amazonaws.com" }
         Action    = "sqs:SendMessage"
-        Resource  = aws_sqs_queue.target_queue.arn
+        Resource  = aws_sqs_queue.cola_destino.arn 
         Condition = {
           ArnEquals = { "aws:SourceArn": aws_cloudwatch_event_rule.updated_events_rule.arn }
         }
@@ -44,7 +44,7 @@ resource "aws_pipes_pipe" "processing_pipe" {
   name     = "${var.project_prefix}-pipe"
   role_arn = aws_iam_role.pipe_role.arn
 
-  source = aws_sqs_queue.source_queue.arn
+  source = aws_sqs_queue.cola_origen.arn 
   source_parameters {
     sqs_queue_parameters {
       batch_size = 1 

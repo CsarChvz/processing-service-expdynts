@@ -70,13 +70,13 @@ resource "aws_iam_role_policy" "pipe_policy" {
         # Permisos para invocar la Lambda de Enriquecimiento
         Effect = "Allow"
         Action = "lambda:InvokeFunction"
-        Resource = aws_lambda_function.lambda_enriquecimiento.arn
+        Resource = module.lambda_function.lambda_function_arn 
       },
       {
         # Permisos para depositar el resultado en el Event Bus
         Effect = "Allow"
         Action = "events:PutEvents"
-        Resource = aws_cloudwatch_event_bus.bus_central.arn
+        Resource = aws_cloudwatch_event_bus.central_bus.arn 
       }
     ]
   })

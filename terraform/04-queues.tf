@@ -1,4 +1,3 @@
-# 1. Colas SQS
 resource "aws_sqs_queue" "cola_origen" {
   name = "${var.project_prefix}-cola-a-origen"
 }
