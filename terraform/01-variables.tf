@@ -4,14 +4,12 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
-variable "project_prefix" {
+variable "service_prefix" {
   description = "Prefijo para identificar los recursos"
   type        = string
   default     = "processing-service-expdynts"
 }
 
-variable "database_url" {
-  description = "URL de conexión a la base de datos"
-  type        = string
-  sensitive   = true
+data "aws_ssm_parameter" "db_url" {
+  name = "/config/database_url"
 }

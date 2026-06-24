@@ -1,10 +1,10 @@
 resource "aws_cloudwatch_event_bus" "central_bus" {
-  name = "${var.project_prefix}-central-bus"
+  name = "${var.service_prefix}-central-bus"
 }
 
 resource "aws_cloudwatch_event_rule" "updated_events_rule" {
   # Inyectamos el prefijo en la regla
-  name           = "${var.project_prefix}-route-updated-events"
+  name           = "${var.service_prefix}-route-updated-events"
   event_bus_name = aws_cloudwatch_event_bus.central_bus.name
   description    = "Catches UPDATED events and sends them to Target Queue"
 
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_event_rule" "updated_events_rule" {
 resource "aws_cloudwatch_event_target" "target_queue_destination" {
   rule           = aws_cloudwatch_event_rule.updated_events_rule.name
   event_bus_name = aws_cloudwatch_event_bus.central_bus.name
-  target_id      = "${var.project_prefix}-TargetQueueB"
+  target_id      = "${var.service_prefix}-TargetQueueB"
   arn            = aws_sqs_queue.cola_destino.arn 
 }
 
@@ -41,7 +41,7 @@ resource "aws_sqs_queue_policy" "allow_bus_to_target_queue" {
 }
 
 resource "aws_pipes_pipe" "processing_pipe" {
-  name     = "${var.project_prefix}-pipe"
+  name     = "${var.service_prefix}-pipe"
   role_arn = aws_iam_role.pipe_role.arn
 
   source = aws_sqs_queue.cola_origen.arn 
