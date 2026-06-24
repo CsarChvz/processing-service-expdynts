@@ -16,7 +16,7 @@ resource "aws_iam_role" "lambda_role" {
 
 # Crear política para CloudWatch Logs
 resource "aws_iam_policy" "cloudwatch_logs_policy" {
-  name        = "procesamiento-expedientes-cloudwatch-policy"
+  name        = "${var.project_prefix}-cloudwatch-policy"
   description = "Permite escribir logs en CloudWatch"
   policy = jsonencode({
     Version = "2012-10-17"

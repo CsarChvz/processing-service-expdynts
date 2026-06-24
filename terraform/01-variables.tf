@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "project_prefix" {
   description = "Prefijo para identificar los recursos"
   type        = string
-  default     = "lab-pipes-final"
+  default     = "processing-service-expdynts"
 }
 
 variable "database_url" {
