@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "test-flujo": "bun scripts/watch_stream.ts"
   },
   "type": "module",
   "keywords": [],
@@ -21,6 +21,7 @@
   "dependencies": {
     "@aws-sdk/client-lambda": "^3.833.0",
     "@neondatabase/serverless": "^1.0.1",
+    "@aws-sdk/client-sqs": "^3.400.0",
     "aws-sdk": "^2.1692.0",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.2",
