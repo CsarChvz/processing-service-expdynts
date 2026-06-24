@@ -10,6 +10,16 @@ variable "service_prefix" {
   default     = "processing-service-expdynts"
 }
 
+variable "cola_origen" {
+  type    = string
+  default = "cola-origen"
+}
+
+variable "cola_destino" {
+  type    = string
+  default = "cola-destino"
+}
+
 data "aws_ssm_parameter" "db_url" {
   name = "/config/database_url"
 }

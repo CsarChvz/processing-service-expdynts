@@ -61,7 +61,6 @@ resource "aws_iam_role_policy" "pipe_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        # Permisos para extraer de la Cola A
         Effect = "Allow"
         Action = ["sqs:ReceiveMessage", "sqs:DeleteMessage", "sqs:GetQueueAttributes"]
         Resource = aws_sqs_queue.cola_origen.arn

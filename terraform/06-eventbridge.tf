@@ -3,7 +3,6 @@ resource "aws_cloudwatch_event_bus" "central_bus" {
 }
 
 resource "aws_cloudwatch_event_rule" "updated_events_rule" {
-  # Inyectamos el prefijo en la regla
   name           = "${var.service_prefix}-route-updated-events"
   event_bus_name = aws_cloudwatch_event_bus.central_bus.name
   description    = "Catches UPDATED events and sends them to Target Queue"
