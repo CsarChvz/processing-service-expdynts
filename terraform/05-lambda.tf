@@ -9,7 +9,7 @@ module "docker_image" {
     redeployment = timestamp()
   }
 
-  source_path = "../src"
+  source_path = "../"
 }
 
 module "lambda_function" {

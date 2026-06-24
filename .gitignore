@@ -3,5 +3,5 @@ terraform/terraform.tfstate
 terraform/terraform.tfvars
 terraform/terraform.tfstate.backup
 node_modules/
-src/*.lock
-src/dist/
+*.lock
+dist/
