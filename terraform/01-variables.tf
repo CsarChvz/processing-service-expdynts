@@ -23,3 +23,21 @@ variable "cola_destino" {
 data "aws_ssm_parameter" "db_url" {
   name = "/config/database_url"
 }
+
+# Nuevas variables para la configuración del Proxy
+data "aws_ssm_parameter" "proxy_login" {
+  name = "/config/proxy_login"
+}
+
+data "aws_ssm_parameter" "proxy_password" {
+  name = "/config/proxy_password"
+  with_decryption = true 
+}
+
+data "aws_ssm_parameter" "proxy_host" {
+  name = "/config/proxy_host"
+}
+
+data "aws_ssm_parameter" "proxy_port" {
+  name = "/config/proxy_port"
+}

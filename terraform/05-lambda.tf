@@ -27,5 +27,11 @@ module "lambda_function" {
 
   environment_variables = {
     DATABASE_URL      = data.aws_ssm_parameter.db_url.value
+
+    # Variables de proxy
+    PROXY_LOGIN       = data.aws_ssm_parameter.proxy_login.value
+    PROXY_PASSWORD    = data.aws_ssm_parameter.proxy_password.value
+    PROXY_HOST        = data.aws_ssm_parameter.proxy_host.value
+    PROXY_PORT        = data.aws_ssm_parameter.proxy_port.value
   }
 }
