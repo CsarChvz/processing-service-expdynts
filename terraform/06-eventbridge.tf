@@ -9,7 +9,7 @@ resource "aws_cloudwatch_event_rule" "updated_events_rule" {
 
   event_pattern = jsonencode({
     detail = {
-      status = ["UPDATED"]
+      estado = ["UPDATED"]
     }
   })
 }

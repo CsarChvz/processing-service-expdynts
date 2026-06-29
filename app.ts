@@ -82,9 +82,8 @@ export const handler = async (event: any[]): Promise<any[]> => {
             console.log("=====================================");
 
             const resultadoProceso = await processExpediente(body);
-
+            body.estado = 'PROCESSED';
             // Enriquecemos el body original con los resultados
-            body.estado = 'UPDATED';
             body.fecha_procesamiento = new Date().toISOString();
             body.detalles_proceso = {
                 id: resultadoProceso.id,
@@ -98,6 +97,7 @@ export const handler = async (event: any[]): Promise<any[]> => {
             // puedes agregar una bandera y la data para que el consumidor sepa qué hacer.
             if (resultadoProceso.resultadoComparacion?.haCambiado) {
                 body.requiere_notificacion = true;
+                body.estado = 'UPDATED';
                 body.payload_notificacion = resultadoProceso.resultadoComparacion.data;
             } else {
                 body.requiere_notificacion = false;
